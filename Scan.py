@@ -1,6 +1,6 @@
-import re
+import re, os, sys, platform, glob, pathlib
 
-with open('Projeto TCC.txt', 'r', encoding='UTF-8') as file:
+with open('NOTES.txt', 'r', encoding='UTF-8') as file:
     content = file.readlines()
 
     print(content) #The entire file
@@ -13,3 +13,9 @@ with open('Projeto TCC.txt', 'r', encoding='UTF-8') as file:
 print(find.search(line))
 print(find.findall(line))
 print(find.sub('of', line))'''
+
+print(os.listdir('.'))
+print(platform.uname())
+print(sys.platform)
+print(glob.glob('*.py'))
+print(pathlib.Path.cwd())
