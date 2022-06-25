@@ -23,9 +23,9 @@ print(pathlib.Path.cwd())
 help('modules')'''
 
 arq = os.chdir('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery')
-for file in glob.glob('*.txt'):
-    #print(file)
-    for info in open(file, encoding='UTF-8'):
-        #print(info)
-        if 'Abra' in info:
-            print(file)
+for file in glob.glob('*.*'):
+    count = 0
+    for info in open(file):
+        count += 1
+        if 'dados' in info:
+            print('Arquivo: {}\nLinha {}: {}'.format(file, count, info))
