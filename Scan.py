@@ -1,4 +1,4 @@
-import re, os, sys, platform, glob, pathlib
+import re, os, sys, platform, glob, pathlib, pandas, docx, docx2txt
 
 '''with open('NOTES.txt', 'r', encoding='UTF-8') as file:
     content = file.readlines()
@@ -24,8 +24,21 @@ help('modules')'''
 
 arq = os.chdir('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery')
 for file in glob.glob('*.*'):
-    count = 0
-    for info in open(file):
-        count += 1
-        if 'dados' in info:
-            print('Arquivo: {}\nLinha {}: {}'.format(file, count, info))
+    if 'docx' in file:
+        vari = docx2txt.process('teste.docx')
+        vari.strip()
+        lista = vari.split(sep = '\n')
+        while '' in lista:
+            d = lista.index('')  
+            del(lista[d])
+        print(lista)
+        for i in range(len(lista)):
+            if 'dado' in lista[i]:
+                print('Arquivo: {}\nLinha {}: {}'.format(file, i+1, lista[i]))
+
+    else:
+        count = 0
+        for info in open(file):
+            count += 1
+            if 'dados' in info:
+                print('Arquivo: {}\nLinha {}: {}'.format(file, count, info))
