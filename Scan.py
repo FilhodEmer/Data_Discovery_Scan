@@ -2,34 +2,38 @@ import re, os, sys, platform, glob, pathlib, pandas, docx, docx2txt
 
 p = pathlib.Path('/Program Files')
 L = [x for x in p.iterdir() if x.is_dir()]
-print(L[27])
 
-arq = os.chdir(L[27])
-for file in glob.glob('*.*'): # Filtrar apenas arquivos
-    if 'docx' in file:
-        vari = docx2txt.process('teste.docx')
-        vari.strip()
-        lista = vari.split(sep = '\n')
-        while '' in lista:
-            d = lista.index('')  
-            del(lista[d])
-        for i in range(len(lista)):
-            if 'dado' in lista[i]:
-                print('Arquivo: {}\nLinha {}: {}'.format(file, i+1, lista[i]))
+arq = os.chdir('/')
+for file in glob.glob('*.*'):
+    try:
+        if 'docx' in file:
+            vari = docx2txt.process('teste.docx')
+            vari.strip()
+            lista = vari.split(sep = '\n')
 
-    else:
-        count = 0
-        for info in open(file):
-            count += 1
-            if 'name' in info:
-                print('Arquivo: {}\nLinha {}: {}'.format(file, count, info))
+            while '' in lista:
+                d = lista.index('')
+                del(lista[d])
+            for i in range(len(lista)):
+                if 'dado' in lista[i]:
+                    print('Arquivo: {}{}\nLinha {}: {}'.format(pathlib.Path.cwd(), file, i+1, lista[i]))
 
-with open('NOTES.txt', 'r', encoding='UTF-8') as file:
+        else:
+            count = 0
+            for info in open(file):
+                count += 1
+                if 'name' in info.strip():
+                    print('Arquivo: {}{}\nLinha {}: {}'.format(pathlib.Path.cwd(), file, count, info))
+    
+    except(UnicodeDecodeError, PermissionError):
+        continue
+
+'''with open('NOTES.txt', 'r', encoding='UTF-8') as file:
     content = file.readlines()
 
     #print(content) #The entire file
     
-'''    for line in content:
+    for line in content:
         if re.search('dado', line):
             print(line, re.findall('de', line))
 '''
