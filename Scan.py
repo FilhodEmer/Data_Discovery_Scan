@@ -2,8 +2,9 @@ import re, os, sys, platform, glob, pathlib, pandas, docx, docx2txt
 
 p = pathlib.Path('/Program Files')
 L = [x for x in p.iterdir() if x.is_dir()]
+print(L[7])
 
-arq = os.chdir('/')
+arq = os.chdir(L[7])
 for file in glob.glob('*.*'):
     try:
         if 'docx' in file:

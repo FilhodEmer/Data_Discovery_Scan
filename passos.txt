@@ -12,4 +12,15 @@
 - Arquivos, 
 - Diretórios,
 - Dashboards.
-
+.txt
+.html
+.xml
+.log
+.py
+.ini
+.json
+.ps1
+.pdb
+.mof
+.xsl
+.lua
