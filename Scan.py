@@ -1,51 +1,44 @@
-import re, os, sys, platform, glob, pathlib, pandas, docx, docx2txt
+from docx2txt import process
+from pathlib import Path
+from time import time
 
-p = pathlib.Path('/Program Files')
-L = [x for x in p.iterdir() if x.is_dir()]
-print(L[7])
-
-arq = os.chdir(L[7])
-for file in glob.glob('*.*'):
-    try:
-        if 'docx' in file:
-            vari = docx2txt.process('teste.docx')
-            vari.strip()
-            lista = vari.split(sep = '\n')
-
-            while '' in lista:
-                d = lista.index('')
-                del(lista[d])
-            for i in range(len(lista)):
-                if 'dado' in lista[i]:
-                    print('Arquivo: {}{}\nLinha {}: {}'.format(pathlib.Path.cwd(), file, i+1, lista[i]))
-
-        else:
-            count = 0
-            for info in open(file):
-                count += 1
-                if 'name' in info.strip():
-                    print('Arquivo: {}{}\nLinha {}: {}'.format(pathlib.Path.cwd(), file, count, info))
-    
-    except(UnicodeDecodeError, PermissionError):
-        continue
-
-'''with open('NOTES.txt', 'r', encoding='UTF-8') as file:
-    content = file.readlines()
-
-    #print(content) #The entire file
-    
-    for line in content:
-        if re.search('dado', line):
-            print(line, re.findall('de', line))
-'''
-
-'''find = re.compile(r'de')
-print(find.search(line))
-print(find.findall(line))
-print(find.sub('of', line))'''
-
-'''print(os.listdir('.'))
-print(platform.uname())
-print(sys.platform)
-print(glob.glob('*.py'))
-print(pathlib.Path.cwd())'''
+start = time()
+with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida_Preliminar.txt', 'w', encoding = 'UTF-8') as out:
+    for file in list(Path('.').rglob('*.*')):
+        aux = dict()
+        counter = int()
+        try:
+            if 'docx' in file.name and '~$' not in file.name:
+                document = process(file)
+                document.strip()
+                list_document = document.split(sep = '\n')
+                while '' in list_document:
+                    temp = list_document.index('')
+                    del(list_document[temp])
+                for line in range(len(list_document)):
+                    key = line
+                    if 'dado' in list_document[line]:
+                        counter += 1
+                        aux[key] = list_document[line]
+                if counter > 0:
+                    out.write('Arquivo: {}\n'.format(file))
+                    for num, cont in aux.items():
+                        out.write('Linha {}: {}\n'.format(num, cont))
+                    out.write('\n')
+            else:
+                count = int()
+                for line in open(file, encoding = 'UTF-8'):
+                    count += 1
+                    key = count
+                    if 'dado' in line.strip():
+                        counter += 1
+                        aux[key] = line
+                if counter > 0:
+                    out.write('Arquivo: {}'.format(file))
+                    for num, cont in aux.items():
+                        out.write('Linha {}: {}\n'.format(num, cont))
+        except (UnicodeDecodeError, PermissionError):
+            continue
+    print('Saída Gravada.')
+end = time()
+print(end - start)

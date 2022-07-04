@@ -12,6 +12,7 @@
 - Arquivos, 
 - Diretórios,
 - Dashboards.
+.docx
 .txt
 .html
 .xml
@@ -24,3 +25,7 @@
 .mof
 .xsl
 .lua
+.por
+.ino 
+.php
+.sh
