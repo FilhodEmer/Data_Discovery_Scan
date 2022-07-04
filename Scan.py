@@ -4,7 +4,7 @@ from time import time
 
 start = time()
 with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida_Preliminar.txt', 'w', encoding = 'UTF-8') as out:
-    for file in list(Path('.').rglob('*.*')):
+    for file in list(Path('/').rglob('*.*')):
         aux = dict()
         counter = int()
         try:
@@ -19,26 +19,29 @@ with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida_Prelimi
                     key = line
                     if 'dado' in list_document[line]:
                         counter += 1
-                        aux[key] = list_document[line]
+                        aux[key] = list_document[line].strip()
                 if counter > 0:
                     out.write('Arquivo: {}\n'.format(file))
                     for num, cont in aux.items():
                         out.write('Linha {}: {}\n'.format(num, cont))
                     out.write('\n')
             else:
-                count = int()
-                for line in open(file, encoding = 'UTF-8'):
-                    count += 1
-                    key = count
-                    if 'dado' in line.strip():
-                        counter += 1
-                        aux[key] = line
+                if file.name != 'Saida_Preliminar.txt':
+                    count = int()
+                    for line in open(file, encoding = 'UTF-8'):
+                        count += 1
+                        if 'dado' in line.strip():
+                            key = count
+                            counter += 1
+                            aux[key] = line.strip()
                 if counter > 0:
-                    out.write('Arquivo: {}'.format(file))
+                    out.write('Arquivo: {}\n'.format(file))
                     for num, cont in aux.items():
                         out.write('Linha {}: {}\n'.format(num, cont))
+                    out.write('\n')
         except (UnicodeDecodeError, PermissionError):
             continue
     print('Saída Gravada.')
 end = time()
-print(end - start)
+
+print('{:0.3f}s'.format(end - start))

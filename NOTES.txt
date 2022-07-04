@@ -7,6 +7,10 @@ módulo paramiko
 módulo re
 >provável forma de busca de dados sensíveis
 
+módulo PyPDF2
+>leitura de PDF 
+
+módulo
 *git
 *vscode
 *excessões
