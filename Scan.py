@@ -8,7 +8,7 @@ with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida_Prelimi
         aux = dict()
         counter = int()
         try:
-            if 'docx' in file.name and '~$' not in file.name:
+            if file.suffix == '.docx' and '~$' not in file.name:
                 document = process(file)
                 document.strip()
                 list_document = document.split(sep = '\n')
