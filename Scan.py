@@ -4,7 +4,7 @@ from time import time
 
 start = time()
 with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida_Preliminar.txt', 'w', encoding = 'UTF-8') as out:
-    for file in list(Path('/').rglob('*.*')):
+    for file in list(Path('.').rglob('*.*')):
         aux = dict()
         counter = int()
         try:
