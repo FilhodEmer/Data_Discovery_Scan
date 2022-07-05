@@ -1,4 +1,3 @@
-
 1. Abra uma pasta no sistema
 2. Abra um arquivo ou documento dentro da pasta
 3. Leia o conteúdo do arquivo ou documento
@@ -29,3 +28,11 @@
 .ino 
 .php
 .sh
+.mustache
+.js 
+.ipynb
+.sql
+.csv
+.vbox
+.vbox-prev
+.rtf

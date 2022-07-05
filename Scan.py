@@ -39,7 +39,7 @@ with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida_Prelimi
                     for num, cont in aux.items():
                         out.write('Linha {}: {}\n'.format(num, cont))
                     out.write('\n')
-        except (UnicodeDecodeError, PermissionError):
+        except (UnicodeDecodeError, PermissionError, FileNotFoundError):
             continue
     print('Saída Gravada.')
 end = time()
