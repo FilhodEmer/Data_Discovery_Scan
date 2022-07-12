@@ -21,3 +21,4 @@ módulo
 - buscar dados pessoais e dados pessoais sensíveis;
 - classificar o que é sensível ou não
 - linhas ou frases por método string (próximo ponto final, primeira maiúscula, etc.)
+- englobar mais de um disco

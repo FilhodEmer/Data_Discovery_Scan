@@ -36,3 +36,4 @@
 .vbox
 .vbox-prev
 .rtf
+.lnk
