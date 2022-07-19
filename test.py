@@ -1,10 +1,7 @@
-import pathlib, docx2txt
+import fitz
+conteudo = ""
 
-'''for file in list(pathlib.Path('.').rglob('*.*')):
-    if file.suffix in ['.xlsx', '.xls', '.xlsm']:
-        print('Yes!')'''
+with fitz.open(r'c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/document-1.pdf') as pdf:
 
-lista = [chr(i) for i in range(ord('a'),ord('z')+1)]
-lista2 = list(map(chr, range(97, 123)))
-
-print(lista2[4] + ':/')
+    for pagina in pdf:
+        conteudo += pagina.get_text()
