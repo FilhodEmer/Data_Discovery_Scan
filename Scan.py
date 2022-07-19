@@ -1,13 +1,13 @@
 from docx2txt import process
 from pathlib import Path
 from time import time
-from PyPDF2 import PdfReader
+import fitz
 
 start = time()
 list2 = list(map(chr, range(97, 123)))
 with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida_Preliminar.txt', 'w', encoding = 'UTF-8') as out:
     #for disk in list2:
-    for file in list(Path(r'c:/Users/emers/Desktop/Faculdade/Semestre 6/').rglob('*.*')):
+    for file in list(Path(r'c:/Users/emers/Desktop/Faculdade/').rglob('*.*')):
         aux = dict()
         counter = int()
         try:
@@ -31,13 +31,18 @@ with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida_Prelimi
                     out.write('\n')
             
             elif file.suffix == '.pdf':
-                out.write('Arquivo: {}\n'.format(file))
-                document = PdfReader(file)
-                for number in range(len(document.pages)):
-                    page = document.pages[0]
-                    sheet = page.extract_text()
-                    if 'data' in sheet:
-                        out.write('Página {}\n'.format(number + 1))
+                for page in fitz.open(file):
+                    content = str()
+                    content += page.get_text()
+                    counter += 1
+                    if 'dado' in content:
+                        key = counter
+                        aux[key] = content
+                if len(aux) > 0:
+                    out.write('Arquivo: {}\n'.format(file))
+                    for num in aux.keys():
+                        out.write('Página {}\n'.format(num))
+                    out.write('\n')
             
             elif file.suffix in ['.pptx', '.ppt', '.pptm']:
                 #print(file)
