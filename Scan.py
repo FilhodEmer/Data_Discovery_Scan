@@ -5,9 +5,10 @@ import fitz
 
 start = time()
 list2 = list(map(chr, range(97, 123)))
-with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida_Preliminar.txt', 'w', encoding = 'UTF-8') as out:
+with open('f:/Desktop/Saida_Preliminar.txt', 'w', encoding = 'UTF-8') as out:
     #for disk in list2:
-    for file in list(Path(r'c:/Users/emers/Desktop/Faculdade/').rglob('*.*')):
+    for file in list(Path(r'd:/').rglob('*.*')):
+        print(file)
         aux = dict()
         counter = int()
         try:
@@ -31,11 +32,13 @@ with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida_Prelimi
                     out.write('\n')
             
             elif file.suffix == '.pdf':
+                out.write('Arquivo: {}\n'.format(file))
                 for page in fitz.open(file):
                     content = str()
                     content += page.get_text()
                     counter += 1
                     if 'dado' in content:
+                        print(content.split())
                         key = counter
                         aux[key] = content
                 if len(aux) > 0:
@@ -67,7 +70,7 @@ with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida_Prelimi
                     for num, cont in aux.items():
                         out.write('Linha {}: {}\n'.format(num, cont))
                     out.write('\n')
-        except (UnicodeDecodeError, PermissionError, FileNotFoundError):
+        except (UnicodeDecodeError, PermissionError, FileNotFoundError, fitz.FileDataError, ValueError):
             continue
 
 print('Saída Gravada.')
