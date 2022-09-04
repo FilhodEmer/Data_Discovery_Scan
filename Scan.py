@@ -9,7 +9,7 @@ import fitz
 
 start = time()
 list2 = list(map(chr, range(97, 123)))
-with open('f:/Desktop/Saida_Preliminar.txt', 'w', encoding = 'UTF-8') as out:
+with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida_Preliminar.txt', 'w', encoding = 'UTF-8') as out:
     #for disk in list2:
     for file in list(Path(r'c:\Users\emers\Desktop\Faculdade\TCC\Scan_DataDiscovery\teste').rglob('*.*')):
         #out.write(str(file))
