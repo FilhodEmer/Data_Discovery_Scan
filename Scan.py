@@ -9,10 +9,10 @@ import fitz
 from os import path
 
 start = time()
-disks = [f'{d}:' for d in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' if path.exists(f'{d}:')]
+disks = [f'{d.lower()}:' for d in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' if path.exists(f'{d}:')]
 with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida_Preliminar.txt', 'w', encoding = 'UTF-8') as out:
     for d in disks:
-        for file in list(Path(r'disks').rglob('*.*')):
+        for file in list(Path(r'{}'.format(d) + '/').rglob('*.*')):
             #out.write(str(file))
             #out.write('\n')
             aux, counter = dict(), int()
