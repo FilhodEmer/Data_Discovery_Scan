@@ -4,6 +4,7 @@ Arquivo de nível superior.
 
 from pathlib import Path
 import wordlist
+import output
 from simple_text import pure_text
 
 def scan(file, word_list):
@@ -22,18 +23,11 @@ def scan(file, word_list):
                 return pure_text(file, word_list)
         except (UnicodeDecodeError, PermissionError, FileNotFoundError, ValueError):
             pass
-
-def write(file, out_file, dictionary):
-    '''Procedimento para saída de dados. [TEMPORÁRIO]'''
-    out_file.write('Arquivo: {}\n'.format(file))
-    for num, cont in dictionary.items():
-        out_file.write('Linha {}: {}\n'.format(num, cont))
-    out_file.write('\n')
-
+        
 #Chamada de métodos, funções e procedimentos.
 data = wordlist.sensitive_data()
 with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/~$Saida_Preliminar.txt', 'w', encoding = 'UTF-8') as out:
-    for f in list(Path(r'c:/Users/emers/Desktop/Faculdade').rglob('*.*')):
+    for f in list(Path(r'c:/Users/emers/Desktop/Faculdade/TCC').rglob('*.*')):
         sensitive = scan(f, data)
         if sensitive is not None:
-            write(f, out, sensitive)
+            output.write(f, out, sensitive)
