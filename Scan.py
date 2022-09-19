@@ -9,10 +9,11 @@ import fitz
 from os import path
 
 start = time()
-disks = [f'{d.lower()}:' for d in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' if path.exists(f'{d}:')]
-with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida_Preliminar.txt', 'w', encoding = 'UTF-8') as out:
-    for d in disks:
-        for file in list(Path(r'{}'.format(d) + '/').rglob('*.*')):
+#disks = [f'{d.lower()}:' for d in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' if path.exists(f'{d}:')]
+with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/~$Saida_Preliminar.txt', 'w', encoding = 'UTF-8') as out:
+    #for d in disks:
+        #for file in list(Path(r'{}'.format(d) + '/').rglob('*.*')):
+        for file in list(Path(r'c:/Users/emers/Desktop/Faculdade/TCC').rglob('*.*')):
             #out.write(str(file))
             #out.write('\n')
             aux, counter = dict(), int()
@@ -83,8 +84,6 @@ with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida_Prelimi
                                 out.write('Arquivo: {}\n'.format(file))
                                 for page in aux.keys():
                                     out.write('Aba: {}\n'.format(page))
-                                    for it in aux[page]:
-                                        print(it)
                                     out.write('Celula {}: {}\n'.format(aux[page][0], aux[page][1], end = '\t'))
                                     out.write('\n')
                         
@@ -108,14 +107,13 @@ with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida_Prelimi
                                         out.write('Célula {}: {}\n'.format(cont[0], cont[1]))
                     
                     else:
-                        if file.name != 'Saida_Preliminar.txt':
-                            count = int()
-                            for line in open(r'file', encoding = 'UTF-8'):
-                                count += 1
-                                if 'dado' in line.strip():
-                                    key = count
-                                    counter += 1
-                                    aux[key] = line.strip()
+                        count = int()
+                        for line in open(r'{}'.format(file), encoding = 'UTF-8'):
+                            count += 1
+                            if 'dado' in line.strip():
+                                key = count
+                                counter += 1
+                                aux[key] = line.strip()
                         if counter > 0:
                             out.write('Arquivo: {}\n'.format(file))
                             for num, cont in aux.items():
