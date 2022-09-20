@@ -26,8 +26,11 @@ def scan(file, word_list):
         
 #Chamada de métodos, funções e procedimentos.
 data = wordlist.sensitive_data()
-with open('c:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/~$Saida_Preliminar.txt', 'w', encoding = 'UTF-8') as out:
-    for f in list(Path(r'c:/Users/emers/Desktop/Faculdade/TCC').rglob('*.*')):
+with open('C:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida.txt', 'w', encoding = 'UTF-8') as out:
+    for f in list(Path(r'C:/Users/emers/Desktop/Faculdade/TCC').rglob('*.*')):
         sensitive = scan(f, data)
         if sensitive is not None:
             output.write(f, out, sensitive)
+
+print('Finalizado.\nPressione <Enter> para encerrar.')
+input()
