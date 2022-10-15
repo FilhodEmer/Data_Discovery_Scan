@@ -3,9 +3,9 @@ Arquivo de nível superior.
 '''
 
 from pathlib import Path
-import wordlist
-import output
-from simple_text import pure_text
+import src.package_name.module.wordlist as wordlist
+import src.package_name.module.output as output
+from src.package_name.module.simple_text import pure_text
 from os import path
 
 def scan(file, word_list):
@@ -27,17 +27,18 @@ def scan(file, word_list):
         except (UnicodeDecodeError, PermissionError, FileNotFoundError, ValueError, OSError):
             pass
     
-def dictionary():
+def drives():
     '''Função para identificação dos discos.'''
     return [f'{d.lower()}:' for d in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' if path.exists(f'{d}:')]
 
 #Chamada de métodos, funções e procedimentos.
 data = wordlist.sensitive_data()
-disk = dictionary()
+disk = drives()
+home = Path.home()
 
-with open('C:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/Saida.txt', 'w', encoding = 'UTF-8') as out:
+with open(f'{home}/Desktop/Saida.txt', 'w', encoding = 'UTF-8') as out:
     for disks in disk:
-        #for file in list(Path(r'{}'.format(d) + '/').rglob('*.*')):
+        #for file in list(Path(r'{}'.format(disks) + '/').rglob('*.*')):
         for f in list(Path(r'C:/Users/emers/Desktop/Faculdade/TCC').rglob('*.*')):
             sensitive = scan(f, data)
             if sensitive is not None:
