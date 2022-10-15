@@ -105,14 +105,7 @@ leninista
 stalinismo
 stalinista
 sindicalista
-A-
-A+
-B-
-B+
-AB-
-AB+
-O-
-O+
+[ABO]+[+-]
 HIV
 AIDS
 homossexual

@@ -24,7 +24,7 @@ def scan(file, word_list):
                 pass
             else:
                 return pure_text(file, word_list)
-        except (UnicodeDecodeError, PermissionError, FileNotFoundError, ValueError):
+        except (UnicodeDecodeError, PermissionError, FileNotFoundError, ValueError, OSError):
             pass
     
 def dictionary():
