@@ -3,9 +3,9 @@ Arquivo de nível superior.
 '''
 
 from pathlib import Path
-import src.package_name.module.wordlist as wordlist
-import src.package_name.module.output as output
-from src.package_name.module.simple_text import pure_text
+import src.module.wordlist as wordlist
+import src.module.output as output
+from src.module.simple_text import pure_text
 from os import path
 
 def scan(file, word_list):

@@ -5,7 +5,7 @@ Contempla diversas extensões, como .txt, .xml, .json, .py, .html, etc.
 '''
 
 from pathlib import Path
-import src.package_name.module.wordlist as wordlist
+import src.module.wordlist as wordlist
 
 def pure_text(file_name, word_list):
     '''Função para leitura de arquivos de texto simples.'''
