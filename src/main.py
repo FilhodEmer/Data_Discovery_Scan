@@ -1,13 +1,14 @@
 '''
 Arquivo de nível superior.
 '''
-
 from pathlib import Path
-import src.module.wordlist as wordlist
-import src.module.output as output
-from src.module.simple_text import pure_text
+import module.wordlist as wordlist
+import module.output as output
+from module.simple_text import pure_text
 from os import path
+from time import time
 
+start = time()
 def scan(file, word_list):
     '''Função principal para leitura de arquivos.'''
     if '~$' not in file.name and not Path.stat(file).st_size == 0:
@@ -39,10 +40,12 @@ home = Path.home()
 with open(f'{home}/Desktop/Saida.txt', 'w', encoding = 'UTF-8') as out:
     for disks in disk:
         #for file in list(Path(r'{}'.format(disks) + '/').rglob('*.*')):
-        for f in list(Path(r'C:/Users/emers/Desktop/Faculdade/TCC').rglob('*.*')):
+        for f in list(Path(r'C:/Users/emers/Desktop/Faculdade').rglob('*.*')):
             sensitive = scan(f, data)
             if sensitive is not None:
                 output.write(f, out, sensitive)
 
 print('Finalizado.\nPressione <Enter> para encerrar.')
+end = time()
+print(f'{end - start:0.3f}s')
 input()
