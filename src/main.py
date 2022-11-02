@@ -46,7 +46,7 @@ saida = DataFrame(columns=['Caminho', 'Arquivo','Página', 'Linha', 'Slide', 'Ab
 with open(f'{home}/Saida1.txt', 'w', encoding = 'UTF-8') as out:
     for disks in disk:
         #for file in list(Path(r'{}'.format(disks) + '/').rglob('*.*')):
-        for f in list(Path(r'{}'.format('C:/Users/emers/Desktop/Faculdade/TCC/Scan_DataDiscovery/tests/')).rglob('*.*')):
+        for f in list(Path(r'{}'.format('Disco:/caminho-para-a-pasta/')).rglob('*.*')):
             fname = f.name
             sensitive = scan(f, data) # Debuggando
             if sensitive is not None:
@@ -59,7 +59,7 @@ with open(f'{home}/Saida1.txt', 'w', encoding = 'UTF-8') as out:
                 else:
                     for x in output.write(f, fname, sensitive):
                         saida.loc[len(saida.index)] = x
-        saida.to_excel('teste1.xlsx', index=False)
+        saida.to_excel('~$teste1.xlsx', index=False)
 
 print('Finalizado.\nPressione <Enter> para encerrar.')
 end = time()
