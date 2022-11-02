@@ -8,9 +8,16 @@ teste
 ~$Saida_Preliminar1.txt
 ~$Saida_Teste.txt
 ~$regex.txt
+~$teste.xlsx
 test.py
+teste.py
 test2.py
 bkup.py
 __pycache__
 Pyinstaller
 tests
+build
+dist
+teste.xlsx
+teste1.xlsx
+teste2.xlsx

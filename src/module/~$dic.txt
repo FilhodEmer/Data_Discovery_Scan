@@ -83,6 +83,7 @@ marx.*
 leninis.*
 stalinis.*
 sindicalista
+autista
 [ABO]+[+-]
 HIV
 AIDS

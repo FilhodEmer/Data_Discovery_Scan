@@ -1,13 +1,22 @@
+'''
+Módulo para leitura de documentos Word.
+'''
 from docx2txt import process
+from module.comparator import data_finder
 
-document = process(file)
-document.strip()
-list_document = document.split(sep = '\n')
-while '' in list_document:
-    temp = list_document.index('')
-    del(list_document[temp])
-for line in range(len(list_document)):
-    key = line
-    if 'dado' in list_document[line]:
-        counter += 1
-        aux[key] = list_document[line].strip()
+def docx_r(file_path, word_list):
+    '''Função para abertura e leitura de documentos Word'''
+    t_temp, aux = dict(), dict()
+    doc = process(file_path)
+    doc_list = doc.split(sep='\n')
+    while '' in doc_list:
+        tmp = doc_list.index('')
+        del(doc_list[tmp])
+    for doc_line in range(len(doc_list)):
+        aux = data_finder(word_list, doc_list[doc_line].strip(), doc_line)
+        t_temp.update(aux) if aux is not None else ''
+    if len(t_temp) > 0:
+        return t_temp
+
+if __name__ == '__main__':
+    pass
