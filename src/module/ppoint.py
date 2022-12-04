@@ -3,7 +3,6 @@ Módulo para leitura de apresentações PowerPoint.
 '''
 import collections.abc
 from pptx import Presentation
-from pathlib import Path
 from module.comparator import data_finder
 
 def ppt_r(file_path, word_list):

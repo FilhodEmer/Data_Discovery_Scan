@@ -2,7 +2,6 @@
 Módulo para carregamento do dicionário de palavras.
 '''
 import re
-from pathlib import Path
 
 def sensitive_data():
     '''Função para importação do dicionário de palavras.'''
