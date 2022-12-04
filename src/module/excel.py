@@ -3,7 +3,7 @@ Módulo para leitura de planilhas do Excel.
 '''
 from xlrd import open_workbook_xls
 from openpyxl import load_workbook
-from module.comparator import cell_finder
+from module.comparator import data_finder
 
 def xls_r(file_path, word_list):
     '''Função para abertura e leitura de planilhas no formato .xls'''
@@ -16,8 +16,8 @@ def xls_r(file_path, word_list):
             for col in range(sheet.ncols):
                 cell_name = str(chr(col + 97).upper()) + str(row + 1)
                 cell = str(sheet.cell_value(row, col))
-                aux = cell_finder(word_list, cell, cell_name, key)
-                if aux is not None:
+                aux = data_finder(word_list, cell, key, file_path.suffix, cname=cell_name)
+                if aux:
                     temp[key].append(aux[key][0]) if key in temp else temp.update(aux)
     if len(temp) > 0:
         return temp
@@ -35,8 +35,8 @@ def xlsx_r(file_path, word_list):
                 hlp += 1
                 cell_name = str(chr(hlp + 96).upper()) + str(row + 1)
                 cell = str(col[row].value)
-                aux = cell_finder(word_list, cell, cell_name, key) 
-                if aux is not None:
+                aux = data_finder(word_list, cell, key, file_path.suffix, cname=cell_name)
+                if aux:
                     temp[key].append(aux[key][0]) if key in temp else temp.update(aux)
     if len(temp) > 0:
         return temp

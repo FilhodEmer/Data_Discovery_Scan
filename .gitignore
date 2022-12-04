@@ -10,6 +10,9 @@ teste
 ~$regex.txt
 ~$teste.xlsx
 ~$teste1.xlsx
+~$~$teste1.xlsx
+saida.xlsx
+xsaida.xlsx
 test.py
 teste.py
 test2.py

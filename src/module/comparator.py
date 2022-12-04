@@ -4,24 +4,22 @@ com o conteúdo dos arquivos lidos.
 '''
 import re
 
-def data_finder(dictionary, lines, key):
-    '''Função para busca de dados sensíveis'''
-    temp = dict()
+def data_finder(dictionary, lines, key, suffix, cname='', page=int()):
+    temp, f_data = dict(), list()
     for data_type in dictionary.keys():
         for data in dictionary[data_type]:
             comparison = re.finditer(data, lines)
             for occurrence in comparison:
+                f_data.append(lines[len(occurrence.group()):].strip()) if ':' in occurrence.group() else f_data.append(occurrence.group())
                 if occurrence.string:
-                    temp[key] = lines
-                return temp if temp is not None else ''
-
-def cell_finder(dictionary, cell, cell_name, key):
-    '''Função para busca de dados sensíveis em planilhas Excel'''
-    s_temp = dict()
-    for data_type in dictionary.keys():
-        for data in dictionary[data_type]:
-            comparison = re.finditer(data, cell)
-            for occurrence in comparison:
-                if occurrence.string:
-                    s_temp[key] = [(cell_name, cell)]
-                return s_temp if s_temp is not None else ''
+                    if suffix in ['.xls', '.XLS', '.xlsx', '.XLSX']:
+                        temp[key] = [(cname, lines, f_data, data_type)]
+                        return temp
+                    if suffix in ['.pdf', '.PDF']:
+                        temp[key] = page, lines, f_data, data_type
+                        return temp
+                    if suffix in ['.pptx', '.PPTX']:
+                        temp[key] = [(lines, f_data, data_type)]
+                        return temp
+                    temp[key] = lines, f_data, data_type
+                return temp if temp else ''
