@@ -8,9 +8,7 @@ teste
 ~$Saida_Preliminar1.txt
 ~$Saida_Teste.txt
 ~$regex.txt
-~$teste.xlsx
-~$teste1.xlsx
-~$~$teste1.xlsx
+~$*.xlsx
 saida.xlsx
 xsaida.xlsx
 test.py
