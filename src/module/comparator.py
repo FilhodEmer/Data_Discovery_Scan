@@ -4,6 +4,7 @@ com o conteúdo dos arquivos lidos.
 '''
 import re
 
+
 def data_finder(dictionary, lines, key, suffix, cname='', page=int()):
     temp, f_data = dict(), list()
     for data_type in dictionary.keys():

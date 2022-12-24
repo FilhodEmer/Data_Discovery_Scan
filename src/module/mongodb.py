@@ -1,5 +1,7 @@
-import pymongo
 from platform import uname
+
+import pymongo
+
 
 def db_writer(field, value, user='', password=''):
     comp = uname().node
@@ -10,6 +12,6 @@ def db_writer(field, value, user='', password=''):
     data_collection = dict()
     for document in value:
         for i in range(len(field)):
-            data_collection.update({field[i] : document[i]})
+            data_collection.update({field[i]: document[i]})
         collection.insert_one(data_collection)
         data_collection.clear()

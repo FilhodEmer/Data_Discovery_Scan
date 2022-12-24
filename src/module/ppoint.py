@@ -2,8 +2,11 @@
 Módulo para leitura de apresentações PowerPoint.
 '''
 import collections.abc
+
 from pptx import Presentation
+
 from module.comparator import data_finder
+
 
 def ppt_r(file_path, word_list):
     '''Função para abertura e leitura de apresentações PowerPoint'''
@@ -17,6 +20,7 @@ def ppt_r(file_path, word_list):
                     temp[n_slide].append(laux[n_slide][0]) if n_slide in temp else temp.update(laux)
     if len(temp) > 0:
         return temp
+
 
 if __name__ == '__main__':
     pass

@@ -3,6 +3,7 @@ Módulo para estruturação da saída de dados.
 '''
 from datetime import datetime
 
+
 def write(file_path, file_name, dictio):
     '''Função para criação da estrutura de planilha da saída'''
     pack = list()
@@ -21,6 +22,7 @@ def write(file_path, file_name, dictio):
         capsule.append(datetime.now().strftime('%y-%m-%d %H:%M:%S'))
         pack.append(capsule)
     return pack
+
 
 def pdf_write(file_path, file_name, dictio):
     '''Função para criação da estrutura de planilha de saída dos arquivos .pdf'''
@@ -42,6 +44,7 @@ def pdf_write(file_path, file_name, dictio):
         pdf_pack.append(pdf_cap)
     return pdf_pack
 
+
 def excel_write(file_path, file_name, dictio):
     '''Função para a criação da estrutura de planilha de saída dos arquivos Excel'''
     excel_pack = list()
@@ -62,6 +65,7 @@ def excel_write(file_path, file_name, dictio):
             excel_pack.append(excel_cap)
     return excel_pack
 
+
 def ppt_write(file_path, file_name, dictio):
     '''Função para criação da estrutura de planilha da saída dos arquivos PowerPoint'''
     pack = list()
@@ -81,6 +85,7 @@ def ppt_write(file_path, file_name, dictio):
             capsule.append(datetime.now().strftime('%y-%m-%d %H:%M:%S'))
             pack.append(capsule)
     return pack
+
 
 if __name__ == '__main__':
     pass

@@ -1,9 +1,11 @@
 '''
 Módulo para leitura de planilhas do Excel.
 '''
-from xlrd import open_workbook_xls
 from openpyxl import load_workbook
+from xlrd import open_workbook_xls
+
 from module.comparator import data_finder
+
 
 def xls_r(file_path, word_list):
     '''Função para abertura e leitura de planilhas no formato .xls'''
@@ -21,6 +23,7 @@ def xls_r(file_path, word_list):
                     temp[key].append(aux[key][0]) if key in temp else temp.update(aux)
     if len(temp) > 0:
         return temp
+
 
 def xlsx_r(file_path, word_list):
     '''Função para abertura e leitura de planilhas no formato .xlsx'''
@@ -40,6 +43,7 @@ def xlsx_r(file_path, word_list):
                     temp[key].append(aux[key][0]) if key in temp else temp.update(aux)
     if len(temp) > 0:
         return temp
+
 
 if __name__ == '__main__':
     pass

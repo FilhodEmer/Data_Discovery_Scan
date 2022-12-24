@@ -2,18 +2,22 @@
 Arquivo de nível superior.
 '''
 from pathlib import Path
-import module.wordlist as wordlist
-import module.output as output
-from module.simple_text import pure_text
-from module.docx import docx_r
-from module.pdf import pdf_r
-from module.excel import xls_r, xlsx_r
-from module.ppoint import ppt_r
-from module.mongodb import db_writer
 from time import time
+
 from pandas import DataFrame
 
+import module.output as output
+import module.wordlist as wordlist
+from module.docx import docx_r
+from module.excel import xls_r, xlsx_r
+from module.mongodb import db_writer
+from module.pdf import pdf_r
+from module.ppoint import ppt_r
+from module.simple_text import pure_text
+
 start = time()
+
+
 def scan(file, word_list):
     '''Função principal para leitura de arquivos'''
     if '~$' not in file.name and not Path.stat(file).st_size == 0:
@@ -39,22 +43,22 @@ def scan(file, word_list):
         except (UnicodeDecodeError, PermissionError, FileNotFoundError, ValueError, OSError):
             pass
 
-#Chamada de métodos, funções e procedimentos.
+# Chamada de métodos, funções e procedimentos.
 data = wordlist.sensitive_data()
 data.update(wordlist.personal_data())
 out_path = Path.cwd()
 out_columns = ['Caminho', 'Arquivo', 'Página', 'Linha', 'Slide', 'Aba', 'Célula', 'Conteúdo', 'Dado Pessoal', 'Tipo de Dado', 'Horário']
-out = DataFrame(columns = out_columns)
+out = DataFrame(columns=out_columns)
 usr = input('Usuário: ')
 passw = input('Senha: ')
 
 while True:
-  file_path = Path(input('Insira o caminho absoluto do diretório a ser escaneado: '))
-  if not file_path.exists():
-      print('Diretório inválido. Tente novamente')
-  else:
-    print('Entendido. Iniciando varredura.')
-    break
+    file_path = Path(input('Insira o caminho absoluto do diretório a ser escaneado: '))
+    if not file_path.exists():
+        print('Diretório inválido. Tente novamente')
+    else:
+        print('Entendido. Iniciando varredura.')
+        break
 
 for file in list(Path(r'{}'.format(file_path)).rglob('*.*')):
     sensitive = scan(file, data)

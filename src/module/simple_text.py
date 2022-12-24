@@ -5,6 +5,7 @@ Contempla diversas extensões, como .txt, .xml, .json, .py, .html, etc.
 '''
 from module.comparator import data_finder
 
+
 def pure_text(file_path, word_list):
     '''Função para abertura e leitura de arquivos de texto simples'''
     aux, count, t_temp = dict(), int(), dict()
@@ -15,6 +16,7 @@ def pure_text(file_path, word_list):
         t_temp.update(aux) if aux else ''
     if len(t_temp) > 0:
         return t_temp
+
 
 if __name__ == '__main__':
     pass
